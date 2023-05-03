@@ -1,0 +1,30 @@
+<!DOCTYPE html5>
+<head>
+
+</head>
+
+<body>
+    <TITLE>Surveillance Robot</TITLE>
+    <H1>Surveillance Robot Using ESP32</H1>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+    
+    <script>
+        var xhttp = new XMLHttpRequest();
+        function getsend(arg) {
+             xhttp.open('GET', arg +'?' + new Date().getTime(), true); 
+             xhttp.send(); 
+        } 
+    </script>
+
+    <!-- Camera Feed puede que se refiera a la ip -->
+    <p align='center'><IMG SRC='http:// + Camerafeed + :81/stream' style='width:500px; transform:rotate(180deg)'></p>
+        <br/><br/>
+
+    <p align='center'> <button style='width:90px; height:30px' onmouseup=getsend('stop') onmousedown=getsend('forward')  ontouchstart=getsend('forward')  >Avant</button> </p>
+    <p align=center>
+    <button style='width:90px; height:30px' onmousedown=getsend(leftturn) onmouseup=getsend('stop')  ontouchstart=getsend('leftturn') >Gauche</button>&nbsp
+    <button style=width:90px;height:30px onmousedown=getsend('stop') onmouseup=getsend('stop')>Stop</button>&nbsp
+    <button style=width:90px;height:30px onmousedown=getsend('reverse') onmouseup=getsend('stop') ontouchstart=getsend('reverse')  >Droite</button>
+</p>
+
+</body>
