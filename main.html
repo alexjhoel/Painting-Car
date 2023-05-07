@@ -1,30 +1,78 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <head>
 
 </head>
 
 <body>
-    <TITLE>Surveillance Robot</TITLE>
-    <H1>Surveillance Robot Using ESP32</H1>
+    <title>Robot WIFI</title>
+
+    <div class='col-12 p-3 bg-primary' style='color: white;'>
+        <i class='fas fa-robot'></i>
+        <span>Robot WIFI</span>
+    </div>
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' integrity='sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65' crossorigin='anonymous'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.15.4/css/all.css' integrity='sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm' crossorigin='anonymous'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
     
     <script>
         var xhttp = new XMLHttpRequest();
+        const args = {
+            forward:'forward',
+            stop:'stop',
+            rightturn:'rightturn',
+            leftturn:'leftturn',
+            reverse:'reverse'
+
+        }
         function getsend(arg) {
              xhttp.open('GET', arg +'?' + new Date().getTime(), true); 
              xhttp.send(); 
-        } 
+        }
+        
+        
     </script>
+    <div class='container p-3'>
+        <!-- Camera Feed puede que se refiera a la ip SRC='http://' + Camerafeed + ':81/stream' -->
+    <div class='row d-flex justify-content-center'>
+        <IMG SRC='http://195.14.102.180/cgi-bin/faststream.jpg?stream=half&fps=15&rand=COUNTER' style='width:500px; transform:rotate(0deg)'>
+    </div>
+        
 
-    <!-- Camera Feed puede que se refiera a la ip -->
-    <p align='center'><IMG SRC='http:// + Camerafeed + :81/stream' style='width:500px; transform:rotate(180deg)'></p>
-        <br/><br/>
+    <div class='row d-flex justify-content-center'>
+        <button class='col-auto btn btn-large btn-primary m-1' id='forward' onmouseup='getsend(args.stop)' onmousedown='getsend(args.forward)'  ontouchstart='getsend(args.forward)'>
+            <p class="p-0 m-0">Forward</p>
+            <i class="p-0 m-0 fas fa-caret-up fa-lg"></i>
+        </button> 
+    </div>
 
-    <p align='center'> <button style='width:90px; height:30px' onmouseup=getsend('stop') onmousedown=getsend('forward')  ontouchstart=getsend('forward')  >Avant</button> </p>
-    <p align=center>
-    <button style='width:90px; height:30px' onmousedown=getsend(leftturn) onmouseup=getsend('stop')  ontouchstart=getsend('leftturn') >Gauche</button>&nbsp
-    <button style=width:90px;height:30px onmousedown=getsend('stop') onmouseup=getsend('stop')>Stop</button>&nbsp
-    <button style=width:90px;height:30px onmousedown=getsend('reverse') onmouseup=getsend('stop') ontouchstart=getsend('reverse')  >Droite</button>
+    <div class='row d-flex justify-content-center'>
+        <button class='col-auto btn btn-large btn-primary m-1' onmousedown='getsend(args.leftturn)' onmouseup='getsend(args.stop)'  ontouchstart='getsend(args.leftturn)'>
+            <span class="p-0 m-0">&nbsp;Left&nbsp;</span> 
+            <i class="p-0 m-0 fas fa-caret-left fa-lg"></i>
+        </button>
+        <div class='col-1'>
+        </div>
+        <button id='rightTurn' class='col-auto btn btn-large btn-primary m-1' onmouseup='getsend(args.stop)' onmousedown='getsend(args.rightturn)'  ontouchstart='getsend(args.rightturn)'>
+            <i class="p-0 m-0 fas fa-caret-right fa-lg"></i>
+            <span class="p-0 m-0">Right</span>
+            
+        </button>
+    </div>
+
+    <div class='row d-flex justify-content-center'>
+        <button id='reverse' class='col-auto btn btn-large btn-primary m-1' onmousedown='getsend(args.reverse)' onmouseup='getsend(args.stop)' ontouchstart='getsend(args.reverse)'>
+            <i class="p-0 m-0 fas fa-caret-down fa-lg"></i>
+            <p class="p-0 m-0">Reverse</p>
+            
+        </button>
+    </div>
+    </div>
+    
+
+    
+    
+    
 </p>
 
 </body>
