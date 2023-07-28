@@ -1,0 +1,13 @@
+{
+    "users":[
+        {
+            "username":"admin",
+            "password":"admin"
+        }
+    ]
+    ,
+    "config":{
+        "cam1Ip":"192.168.0.103",
+        "cam2Ip": "192.168.0.102"
+    }
+}
