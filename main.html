@@ -36,11 +36,12 @@
         
         const session = new Date(localStorage.getItem("session"));
         
-        /*
+        
 
         /////////////////////////
-        Incializacion de usuarios
+        //Inicializacion de usuarios
         /////////////////////////
+        /*
 
         localStorage.setItem("users", JSON.stringify([
         {
@@ -128,7 +129,7 @@
         }
         function getsend(arg) {
             //Enviar comando
-             xhttp.open('GET', "http://" + $("#ip3").val() + "/" + arg +'?' + new Date().getTime(), true); 
+             xhttp.open('GET', $("#ip3").val() + "/" + arg +'?' + new Date().getTime(), true); 
              xhttp.send(); 
         }
 
@@ -139,12 +140,12 @@
 
         function ip1Change(){
             localStorage.setItem("ip1", $("#ip1").val())
-            $("#vid1").attr("src", "http://" + localStorage.getItem("ip1"))
+            $("#vid1").attr("src", localStorage.getItem("ip1"))
         }
 
         function ip2Change(){
             localStorage.setItem("ip2", $("#ip2").val())
-            $("#vid2").attr("src", "http://" + localStorage.getItem("ip2"))
+            $("#vid2").attr("src", localStorage.getItem("ip2"))
         }
 
         function ip3Change(){
