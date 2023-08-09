@@ -194,24 +194,21 @@
 
             synth.speak(utterance);
         }
-
         
-
-        
-
         const args = {
             //Comandos
-            forward: 'forward',
-            stop: 'stop',
-            rightturn: 'rightturn',
-            leftturn: 'leftturn',
-            reverse: 'reverse'
+            forward: '4',
+            stop: '3',
+            rightturn: '1',
+            leftturn: '5',
+            reverse: '2'
 
         }
-        function getsend(arg) {
+        function getsend(val) {
             //Enviar comando
-            xhttp.open('GET', ip3 + "/" + arg + '?' + new Date().getTime(), true);
-            xhttp.send();
+            fetch('http://192.168.0.101/control?var=nostop&val='+1);
+            fetch('http://192.168.0.101/control?var=speed&val='+190);
+            fetch('http://192.168.0.101/control?var=car&val='+val);
         }
 
         function logoff() {
@@ -248,27 +245,31 @@
     </div>
 
     <div class='container p-3' id="app" style="display: none;">
+        
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-md-6 text-center">
                 Cámara en robot móvil
-                <IMG id="vid1" SRC='' onerror="this.src='./img/videoperdido.png';" style='width:100%;' alt="">
+                <IMG id="vid1" SRC='http://192.168.0.101:81/stream'  style='width:100%;' alt="">
+                    
                 <div class='row d-flex justify-content-center'>
-                    <button class='col-auto btn btn-large btn-primary m-1' id='forward' onmouseup='getsend(args.stop)'
+                    <button class='col-auto btn btn-large btn-primary m-1' id='forward'
                         onmousedown='getsend(args.forward)' ontouchstart='getsend(args.forward)' name="Adelante">
                         <p class="p-0 m-0">Forward</p>
                         <i class="p-0 m-0 fas fa-caret-up fa-lg"></i>
                     </button>
                 </div>
-
+                
                 <div class='row d-flex justify-content-center'>
-                    <button class='col-auto btn btn-large btn-primary m-1' onmousedown='getsend(args.leftturn)'
-                        onmouseup='getsend(args.stop)' ontouchstart='getsend(args.leftturn)' name="Girar a la izquierda">
+                    <button class='col-auto btn btn-large btn-primary m-1' onmousedown='getsend(args.leftturn)' ontouchstart='getsend(args.leftturn)' name="Girar a la izquierda">
                         <span class="p-0 m-0">&nbsp;Left&nbsp;</span>
                         <i class="p-0 m-0 fas fa-caret-left fa-lg"></i>
                     </button>
-                    <div class='col-1'>
-                    </div>
-                    <button id='rightTurn' class='col-auto btn btn-large btn-primary m-1' onmouseup='getsend(args.stop)'
+                    <button id='rightTurn' class='col-auto btn btn-large btn-primary m-1'
+                        onmousedown='getsend(args.rightturn)' ontouchstart='getsend(args.rightturn)' name="Girar a la derecha">
+                        &loz;
+
+                    </button>
+                    <button id='rightTurn' class='col-auto btn btn-large btn-primary m-1' 
                         onmousedown='getsend(args.rightturn)' ontouchstart='getsend(args.rightturn)' name="Girar a la derecha">
                         <i class="p-0 m-0 fas fa-caret-right fa-lg"></i>
                         <span class="p-0 m-0">Right</span>
@@ -278,7 +279,7 @@
 
                 <div class='row d-flex justify-content-center'>
                     <button id='reverse' class='col-auto btn btn-large btn-primary m-1'
-                        onmousedown='getsend(args.reverse)' onmouseup='getsend(args.stop)'
+                        onmousedown='getsend(args.reverse)' 
                         ontouchstart='getsend(args.reverse)' name="Reversa">
                         <i class="p-0 m-0 fas fa-caret-down fa-lg"></i>
                         <p class="p-0 m-0">Reverse</p>
@@ -288,7 +289,7 @@
             </div>
             <div class="col-sm-12 col-md-6 text-center">
                 Cámara en lienzo fija
-                <IMG id="vid2" SRC='' onerror="this.src='./img/videoperdido.png';" style='width:100%;'>
+                <IMG id="vid2" src='http://192.168.0.103:8080/video'  style='width:100%;'>
             </div>
         </div>
 
