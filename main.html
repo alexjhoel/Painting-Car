@@ -44,8 +44,8 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
   />
 
-  <script src="main.js"></script>
-  <script src="drawing.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/drawing.js"></script>
 
   <div class="row d-flex p-3 bg-primary" style="color: white">
     <div class="col p-2">
@@ -140,6 +140,7 @@
           <li class="nav-item" role="presentation">
             <button
               class="nav-link active"
+              name="Cambiar a control con botones"
               id="modoBoton-tab"
               data-bs-toggle="tab"
               data-bs-target="#modoBoton"
@@ -155,6 +156,7 @@
             <button
               class="nav-link"
               id="modoVolante-tab"
+              name="Cambiar a control al volante"
               data-bs-toggle="tab"
               data-bs-target="#modoVolante"
               type="button"
@@ -169,6 +171,7 @@
             <button
               class="nav-link"
               id="contact-tab"
+              name="Cambiar a control por puntos"
               data-bs-toggle="tab"
               data-bs-target="#modoNodos"
               type="button"
@@ -248,6 +251,7 @@
             aria-labelledby="modoVolante-tab"
           >
             <canvas id="canvasVolante"></canvas>
+            <p id="pVolante">Estado</p>
           </div>
 
           <div

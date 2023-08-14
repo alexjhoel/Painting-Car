@@ -1,9 +1,11 @@
 var xhttp = new XMLHttpRequest();
         var db;
 
-        const ip1 = "";
-        const ip2 = "";
-        const ip3 = "";
+        const maxVel = 190;
+        const minVel = 5;
+
+        const ip1 = "192.168.0.101";
+        const ip2 = "192.168.0.103";
 
         const alertCard = document.getElementById("alert");
 
@@ -11,7 +13,8 @@ var xhttp = new XMLHttpRequest();
 
         var ttsEnabled = false;
         let synth = window.speechSynthesis;
-
+        var commandState = '3';
+        var velState;
 
 
         /////////////////////////
@@ -62,6 +65,7 @@ var xhttp = new XMLHttpRequest();
         window.onload = () => {
             canvas = document.getElementById("canvasVolante")
             ctx = canvas.getContext("2d")
+            ctx.scale(1, 0.5);
 
             document.querySelectorAll("button").forEach((element) => element.onmouseenter = () => textToSpeech(element.name))
             document.querySelectorAll("input").forEach((element) => element.onmouseenter = () => textToSpeech(element.name))
@@ -154,14 +158,32 @@ var xhttp = new XMLHttpRequest();
             stop: '3',
             rightturn: '1',
             leftturn: '5',
-            reverse: '2'
+            reverse: '2',
 
         }
         function getsend(val) {
             //Enviar comando
-            fetch('http://192.168.0.101/control?var=nostop&val='+1);
-            fetch('http://192.168.0.101/control?var=speed&val='+190);
-            fetch('http://192.168.0.101/control?var=car&val='+val);
+            fetch('http://' + ip1 + '/control?var=nostop&val='+1);
+            fetch('http://' + ip1 + '/control?var=speed&val='+190);
+            fetch('http://' + ip1 + '/control?var=car&val='+val);
+        }
+
+        function getsend2(val, x){
+            
+                if(val != commandState || x != velState){
+                    fetch('http://' + ip1 + '/control?var=nostop&val='+1);
+                    fetch('http://' + ip1 + '/control?var=speed&val='+x);
+                    fetch('http://' + ip1 + '/control?var=car&val='+val);
+                    const list = ["Girando a la derecha", "Retrocediendo", "Detenido","Avanzando", "Girando a la izquierda"]
+                    const speedText = val == args.stop ? "" : (x >= maxVel ? "rápido" : "lento")
+                    document.getElementById("pVolante").innerHTML = list[parseInt(val) - 1] + " " + speedText;
+                    textToSpeech(document.getElementById("pVolante").innerHTML)
+                    commandState = val;
+                    velState = x;
+                }
+            
+            
+            
         }
 
         function logoff() {
@@ -174,12 +196,12 @@ var xhttp = new XMLHttpRequest();
         }
 
         function recargarVid1(){
-            $("#vid1").attr("src","http://192.168.0.102:81/stream?" + new Date().getTime())
+            $("#vid1").attr("src",'http://' + ip1 + '/stream?' + new Date().getTime())
             //$("#vid1").error = () => $("#vid1").attr("src","img/videoperdido.png")
         }
 
         function recargarVid2(){
-            $("#vid2").attr("src","http://192.168.1.6:8080/video?" + new Date().getTime())
+            $("#vid2").attr("src",'http://' + ip2 + '/video?' + new Date().getTime())
             //$("#vid2").error = () => $("#vid2").attr("src","img/videoperdido.png")
         }
 
