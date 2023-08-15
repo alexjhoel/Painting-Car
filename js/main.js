@@ -68,6 +68,10 @@ var xhttp = new XMLHttpRequest();
 
             canvas2 = document.getElementById("canvasNodo")
             ctx2 = canvas2.getContext("2d")
+
+            canvas2.addEventListener("mouseover", () => mouseover2 = true)
+
+            canvas2.addEventListener("mouseout", () => mouseover2 = false)
             
             ctx.scale(1, 0.5);
             ctx2.scale(1, 0.5);

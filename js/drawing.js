@@ -9,11 +9,17 @@ let pos = {}
 let pos2 = {}
 let mouseButtonClicked = false;
 let mouseButtonClicked2 = false;
+let mouseover2 = false;
 let cycle = 0;
+let nodes = [];
+const forwardTime = 500;
+const spinTime = 200;
 
 function startDrawing(e) {
+    
     mouseButtonClicked = true;
-    mouseButtonClicked2 = true;
+    if(mouseover2) mouseButtonClicked2 = true;
+    console.log(nodes);
         // Get the current page scroll position
         scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
@@ -27,6 +33,8 @@ function startDrawing(e) {
             };
     
 }
+
+
 
 function endDrawing(e) {
     drawing = false;
@@ -45,6 +53,9 @@ window.addEventListener("touchstart", startDrawing);
 window.addEventListener("mousemove", move);
 
 window.addEventListener("touchmove", moveTouch)
+
+
+
 
 function move(e) {
     pos = getMousePos(canvas, e);
@@ -192,13 +203,55 @@ function loop(){
     //////////////
 
     ctx2.beginPath();
+    ctx2.fillStyle = "white"
+    ctx2.fillRect(0,0,300,300)
     ctx2.fillStyle = "black"
-    if(mouseButtonClicked2){
-        ctx2.fillRect(pos2.x - 5, pos2.y - 5,10,10)
+    if(mouseButtonClicked2 && isBetween(pos2,{x:0,y:0},{x:300,y:300})){
+        
+        if(nodes.length == 1){
+            nodes.push({x:nodes[nodes.length - 1].x, y:Math.min(pos2.y,nodes[nodes.length - 1].y)})
+        }else{
+            nodes.push(pos2)
+        }
+        
         mouseButtonClicked2 = false;
+    }
+
+    if(nodes.length == 1){
+        ctx2.moveTo(nodes[nodes.length - 1].x ,nodes[nodes.length - 1].y)
+        ctx2.lineTo(nodes[nodes.length - 1].x, Math.min(pos2.y,nodes[nodes.length - 1].y))
+    }else if(nodes.length >= 2){
+        ctx2.moveTo(nodes[nodes.length - 1].x ,nodes[nodes.length - 1].y)
+        ctx2.lineTo(pos2.x, pos2.y)
+    }
+    
+
+    for (let i = 0; i < nodes.length; i++) {
+        
+        ctx2.fillRect(nodes[i].x - 5, nodes[i].y - 5,10,10)
+        ctx2.moveTo(nodes[i].x ,nodes[i].y)
+        if(i!=nodes.length - 1)ctx2.lineTo(nodes[i+1].x, nodes[i+1].y)
+        
     }
     
     ctx2.stroke();
+}
+
+
+function playNodos(){
+    goForward(0)
+}
+function goForward(i){
+    getsend(args.forward);
+    setTimeout(turn(i+1), forwardTime * distance(nodes[i], nodes[i+1]));
+}
+
+function turn(i){
+
+}
+
+function distance({x1,y1},{x2,y2}){
+    Math.sqrt(Math.pow(x1 - x2,2) + Math.pow(y1 - y2,2))
 }
 
 
