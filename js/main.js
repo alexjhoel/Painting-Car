@@ -65,7 +65,12 @@ var xhttp = new XMLHttpRequest();
         window.onload = () => {
             canvas = document.getElementById("canvasVolante")
             ctx = canvas.getContext("2d")
+
+            canvas2 = document.getElementById("canvasNodo")
+            ctx2 = canvas2.getContext("2d")
+            
             ctx.scale(1, 0.5);
+            ctx2.scale(1, 0.5);
 
             document.querySelectorAll("button").forEach((element) => element.onmouseenter = () => textToSpeech(element.name))
             document.querySelectorAll("input").forEach((element) => element.onmouseenter = () => textToSpeech(element.name))

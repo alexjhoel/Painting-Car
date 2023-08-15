@@ -1,14 +1,19 @@
 var canvas;
+var canvas2;
 var ctx;
+var ctx2;
 
 let drawing = false;
 let points = [];
 let pos = {}
+let pos2 = {}
 let mouseButtonClicked = false;
+let mouseButtonClicked2 = false;
 let cycle = 0;
 
 function startDrawing(e) {
     mouseButtonClicked = true;
+    mouseButtonClicked2 = true;
         // Get the current page scroll position
         scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
@@ -43,10 +48,13 @@ window.addEventListener("touchmove", moveTouch)
 
 function move(e) {
     pos = getMousePos(canvas, e);
+    pos2 = getMousePos(canvas2, e);
+    
 }
 
 function moveTouch(e){
     pos = getTouchPos(canvas, e);
+    pos2 = getTouchPos(canvas2, e);
 }
 
 function isBetween(x,y,z){
@@ -177,10 +185,20 @@ function loop(){
 
         if(points[y].length == 0) points.splice(y,1);
     }
-    
-    
-    
     ctx.stroke();
+
+    //////////////
+    //MODO NODOS//
+    //////////////
+
+    ctx2.beginPath();
+    ctx2.fillStyle = "black"
+    if(mouseButtonClicked2){
+        ctx2.fillRect(pos2.x - 5, pos2.y - 5,10,10)
+        mouseButtonClicked2 = false;
+    }
+    
+    ctx2.stroke();
 }
 
 
