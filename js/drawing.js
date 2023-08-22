@@ -15,6 +15,14 @@ let nodes = [];
 const forwardTime = 500;
 const spinTime = 200;
 
+const color1Selected = "rgba(62, 109, 145, 1)";
+const color1UnSelected = "rgba(62, 109, 145, 0.51)";
+const color2Selected = "rgba(70, 151, 180, 1)";
+const color2UnSelected = "rgba(70, 151, 180, 0.51)";
+const color3Selected = "rgba(167,208,210,1)";
+const color3UnSelected = "rgba(167,208,210,0.51)";
+
+
 function startDrawing(e) {
     
     mouseButtonClicked = true;
@@ -80,46 +88,46 @@ function loop(){
     ctx.fillRect(0,0,300,300);
 
     if(isBetween(pos,{x:100,y:0},{x:200,y:150})){
-        ctx.fillStyle = "rgba(245, 39, 39, 1)";
+        ctx.fillStyle = color1Selected;
         if(drawing){
             getsend2(args.forward, pos.y < 75 ? maxVel : minVel);
         }
     }
     else{
-        ctx.fillStyle = "rgba(245, 39, 39, 0.51)";
+        ctx.fillStyle = color1UnSelected;
     }
     ctx.fillRect(100,0,100,150);
 
     if(isBetween(pos,{x:0,y:0},{x:100,y:300})){
-        ctx.fillStyle = "rgba(39, 245, 78, 1)";
+        ctx.fillStyle = color2Selected;
         if(drawing){
             getsend2(args.leftturn, pos.y < 75 || pos.y > 225 ? maxVel : minVel);
         }
     }
     else{
-        ctx.fillStyle = "rgba(39, 245, 78, 0.51)";
+        ctx.fillStyle = color2UnSelected;
     }
     ctx.fillRect(0,0,100,300);
 
     if(isBetween(pos,{x:200,y:0},{x:300,y:300})){
-        ctx.fillStyle = "rgba(39, 245, 78, 1)";
+        ctx.fillStyle = color2Selected;
         if(drawing){
             getsend2(args.rightturn, pos.y < 75 || pos.y > 225 ? maxVel : minVel);
         }
     }
     else{
-        ctx.fillStyle = "rgba(39, 245, 78, 0.51)";
+        ctx.fillStyle = color2UnSelected;
     }
     ctx.fillRect(200,0,100,300);
 
     if(isBetween(pos,{x:100,y:150},{x:200,y:300})){
-        ctx.fillStyle = "rgba(39, 146, 245, 1)";
+        ctx.fillStyle = color3Selected;
         if(drawing){
             getsend2(args.reverse, pos.y > 225 ? maxVel : minVel);
         }
     }
     else{
-        ctx.fillStyle = "rgba(39, 146, 245, 0.51)";
+        ctx.fillStyle = color3UnSelected;
     }
     
     ctx.fillRect(100,150,100,150);

@@ -2,9 +2,9 @@ var xhttp = new XMLHttpRequest();
         var db;
 
         const maxVel = 190;
-        const minVel = 5;
+        const minVel = 100;
 
-        const ip1 = "192.168.0.101";
+        const ip1 = "192.168.111.182";
         const ip2 = "192.168.0.103";
 
         const alertCard = document.getElementById("alert");
