@@ -27,7 +27,6 @@ function startDrawing(e) {
     
     mouseButtonClicked = true;
     if(mouseover2) mouseButtonClicked2 = true;
-    console.log(nodes);
         // Get the current page scroll position
         scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;

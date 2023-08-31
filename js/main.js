@@ -4,8 +4,8 @@ var xhttp = new XMLHttpRequest();
         const maxVel = 190;
         const minVel = 100;
 
-        const ip1 = "192.168.111.182";
-        const ip2 = "192.168.0.103";
+        var ip1 = "";
+        var ip2 = "";
 
         const alertCard = document.getElementById("alert");
 
@@ -32,7 +32,13 @@ var xhttp = new XMLHttpRequest();
         ,{
             "username":"pepito",
         }
-        ]))*/
+        ]))
+        
+        <button class="btn btn-danger" onclick="logoff()" id="logoff" name="Cerrar Sesión">
+        Cerrar sesión
+      </button>
+        
+        */
 
         
 
@@ -59,7 +65,6 @@ var xhttp = new XMLHttpRequest();
         var voicesList = null;
         s.then((voices) => {
             voicesList=voices
-            console.log(voicesList)
         });
 
         window.onload = () => {
@@ -81,22 +86,14 @@ var xhttp = new XMLHttpRequest();
             document.querySelectorAll("button").forEach((element) => element.onfocus = () => textToSpeech(element.name + " ,click"))
             document.querySelectorAll("input").forEach((element) => element.onfocus = () => textToSpeech(element.name + " ,click"))
 
-            if (session) {
-
-                if ((new Date() - session) / 1000 / 60 / 60 < 1) {
-    
-                Ingresar(true);
-
-            }
-
-            }
+            Ingresar(true);
         }
 
         
 
         function login() {
-            
-
+        
+            /*
             const users = JSON.parse(localStorage.getItem("users"));
 
             const username = document.getElementById("username").value
@@ -115,6 +112,7 @@ var xhttp = new XMLHttpRequest();
             if (flag) {
                 MostrarMensajeLogin("Nombre de usuario incorrecto");
             }
+            */
 
         }
 
@@ -205,7 +203,7 @@ var xhttp = new XMLHttpRequest();
         }
 
         function recargarVid1(){
-            $("#vid1").attr("src",'http://' + ip1 + '/stream?' + new Date().getTime())
+            $("#vid1").attr("src",'http://' + ip1 + ':81/stream?' + new Date().getTime())
             //$("#vid1").error = () => $("#vid1").attr("src","img/videoperdido.png")
         }
 
