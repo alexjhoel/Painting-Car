@@ -47,6 +47,8 @@ function getData() {
     dataType: "json",
     success: function (data) {
       $("#table-body").html(data.output);
+      console.log(data.color);
+      $("#last-color-holder").css("--color",data.color)
     },
     error:function (data) {
         console.log(data);

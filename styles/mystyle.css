@@ -1,0 +1,98 @@
+#access {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #0c9;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+  }
+
+  canvas {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    border: solid 5px black;
+  }
+
+  .btn-color.selected{
+    border-width: 3px;
+    background-image: url("../img/brushpaint.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: 3px;
+  }
+
+  .color-holder{
+    background-color: var(--color);
+    position: inherit;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border-width: 2;
+    border-style: solid;
+    border-color: gray;
+    /*transition-duration: 1s;
+    transition-timing-function: ease-out;*/
+  }
+
+  .btn-color{
+    background-color: var(--color);
+    background: conic-gradient(
+        transparent 0,
+        transparent var(--cooldown),
+        gray var(--cooldown),
+        gray
+    );
+    position: inherit;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border-width: 0;
+    border-style: solid;
+    border-color: gray;
+    /*transition-duration: 1s;
+    transition-timing-function: ease-out;*/
+  }
+
+  @property --cooldown {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 100%;
+  }
+
+  @property --color {
+    inherits: false;
+    initial-value: black;
+  }
+
+  
+
+  .btn-color:hover,.btn-color.selected:hover{
+    
+    
+    border-width: 3px;
+    rotate: 15deg;
+    scale: 150%;
+
+  }
+
+  #color-1{
+    
+    background-color: black;
+  }
+
+  #color-2{
+    
+    background-color: crimson;
+  }
+
+  #color-3{
+    
+    background-color: cornflowerblue;
+  }
+

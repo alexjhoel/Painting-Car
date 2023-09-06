@@ -1,0 +1,12 @@
+Añadir estas lineas el httpd.conf en la carpeta apache, esto permite que al poner el nombre de dominio corto ingreses
+pero que ingresando localhost pueda seguir accediendo de forma normal a htdocs si nentrar en la carpeta paintingcar
+
+<VirtualHost *:80>
+	DocumentRoot "C:/xampp/htdocs/"
+	ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+	DocumentRoot "C:/xampp/htdocs/paintingcar/paintingcar"
+	ServerName www.paintingcar.com
+</VirtualHost>

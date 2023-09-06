@@ -1,46 +1,30 @@
-<!DOCTYPE html>
+
+<?php include("./requirename.php"); ?>
 
 <head>
   <title>Painting Car</title>
   <meta charset="utf-8" />
   
 
-  <style>
-    #access {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      bottom: 40px;
-      right: 40px;
-      background-color: #0c9;
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      text-align: center;
-      box-shadow: 2px 2px 3px #999;
-    }
-
-    canvas {
-      background-color: white;
-      width: 300px;
-      height: 300px;
-      border: solid 5px black;
-    }
-  </style>
+  <link rel="stylesheet" href="styles/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles/mystyle.css?t=12233445" />
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+   <script src="update.js?t=19139349"></script>
+   <script src="js/color.js?t=129139349"></script>
 </head>
 
 <body>
 
-   <script src="js/jquery.min.js"></script>
-   <script src="update.js?t=14913139349"></script>
 
-  <link rel="stylesheet" href="styles/bootstrap.min.css" />
 
-  <script src="js/bootstrap.min.js"></script>
+  
+
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-  <script src="js/main.js?t=1491313943549"></script>
+  <script src="js/main.js?t=149131343549"></script>
   <script src="js/drawing.js"></script>
 
   <div class="row d-flex p-3 bg-primary" style="color: white">
@@ -50,8 +34,11 @@
       <i class="fas fa-car"></i>
     </div>
     <div class="col text-end" id="userData" style="display: none">
-      <span>Nombre de usuario:</span>
-      <span id="usernameText">u</span>
+      <span>Nombre:</span>
+      <span><?php if(isset($_SESSION["name"])) echo $_SESSION["name"]?></span>
+      <br>
+      <span>IP:</span>
+      <span><?php echo $_SERVER['REMOTE_ADDR']?></span>
       
       
     </div>
@@ -96,8 +83,21 @@
               d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z" />
           </svg>
         </button>
-        <img id="vid1" style="width: 100%" alt="" />
 
+        <div class="row d-flex p-1 align-items-center">
+          <img class="col-10" id="vid1" alt="" />
+          <div class="col-2 d-flex flex-column" >
+            <?php
+              $query= 'SELECT * FROM Colors';
+              $result = mysqli_query($con, $query);
+
+              while($row = mysqli_fetch_array($result)){
+                echo '<button class="m-1 btn-color" id="color-'.$row["id"].'" onload="this.style.setProperty("--color","'.$row["value"].'")" onclick="colorSelected(event);">';
+              }
+            ?>
+          </div>
+        </div>
+        
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" name="Cambiar a control con botones" id="modoBoton-tab" data-bs-toggle="tab"
@@ -181,6 +181,7 @@
           </svg>
         </button>
         <img id="vid2" style="width: 100%" />
+        
       </div>
     </div>
   </div>

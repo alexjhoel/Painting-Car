@@ -15,7 +15,7 @@ if (isset($_POST["getData"])) {
    //Admin get all the connections and configs
 
 
-   $query = "SELECT * FROM connections";
+   $query = "SELECT ip, connectionTime, authorized, value, connections.name FROM connections INNER JOIN colors ON connections.colorId = colors.id ORDER BY connections.connectionTime DESC";
    $result = mysqli_query($con, $query);
 
    $output = "";
@@ -25,7 +25,12 @@ if (isset($_POST["getData"])) {
          $output .= '
          <tr>
          <td>' . $row["ip"] . '</td>
-         <td>' . $row["time"] . '</td>
+         <td>' . $row["name"] . '</td>
+
+         <td>' . $row["connectionTime"] . '</td>
+         <td>
+         <div class="color-holder" style="--color:'.$row["value"].';)"></div>
+         </td>
          <td>' . $row["authorized"] . '</td>
          <td>
          ';
@@ -48,8 +53,20 @@ if (isset($_POST["getData"])) {
       }
    }
 
+   $query = "SELECT colors.value as value FROM connections INNER JOIN colors ON connections.colorId = colors.id ORDER BY colorTime DESC LIMIT 1";
+   $result = mysqli_query($con, $query);
+
+   $color = "none";
+
+   if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_array($result)) {
+         $color = $row["value"];
+      }
+   }
+
    $data = array(
       'output' => $output,
+      'color' => $color
    );
 } else if (isset($_GET["enable"]) && isset($_GET["ip"])) 
 {
@@ -81,14 +98,12 @@ else {
          $ipStatus = $row["authorized"];
       }
 
-      $query = "UPDATE connections SET time ='" . date('Y-m-d H:i:s') . "' WHERE ip='" . $_SERVER['REMOTE_ADDR'] . "'";
-
    } else {
-      $query = "INSERT INTO connections(ip, authorized, time) VALUES ('" . $_SERVER['REMOTE_ADDR'] . "', false,'" . date('Y-m-d H:i:s') . "')";
-      echo $query;
+      $query = "INSERT INTO connections(ip, authorized, connectionTime) VALUES ('" . $_SERVER['REMOTE_ADDR'] . "', false,'" . date('Y-m-d H:i:s') . "')";
+      mysqli_query($con, $query);
    }
 
-   mysqli_query($con, $query);
+   
    
 
    $query = "SELECT * FROM config";

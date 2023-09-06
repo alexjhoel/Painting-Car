@@ -5,9 +5,10 @@
     <title>Painting Car Admin Panel</title>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
-    <script src="adminUpdate.js?=1241"></script>
+    <script src="adminUpdate.js?=15241"></script>
 
     <link rel="stylesheet" href="styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/mystyle.css?t=21323" />
 </head>
 
 <body>
@@ -55,7 +56,9 @@
                     <thead>
                         <tr>
                             <th>IP</th>
+                            <th>Nombre</th>
                             <th>Última conexión</th>
+                            <th>Color</th>
                             <th>Habilitado</th>
                         </tr>
                     </thead>
@@ -69,8 +72,17 @@
 
         <div class="row">
             <div class="col-md-8 mx-auto">
+                <div class="card card-body">
+                    <h2>Último color:</h2>
+                    <div id="last-color-holder" class="color-holder" ></div>
+                </div>    
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
             <div class="card card-body">
-                    <form id="configChange" method="post">
+                <form id="configChange" method="post">
 
 
                         <div class="form-group p-2">
@@ -89,8 +101,8 @@
                             <input type="submit" class="btn btn-success col-12" name="update" value="Guardar" onclick="">
                         </div>
 
-                    </form>
-                </div>
+                </form>
+            </div>
         </div>
     </div>
 
