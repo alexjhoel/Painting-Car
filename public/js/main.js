@@ -2,7 +2,7 @@ var xhttp = new XMLHttpRequest();
         var db;
 
         const maxVel = 130;
-        const minVel = 120;
+        const minVel = 100;
 
         var ip1 = "";
         var ip2 = "";
@@ -167,6 +167,7 @@ var xhttp = new XMLHttpRequest();
         }
         function getsend(val) {
             //Enviar comando
+            console.log(val);
             fetch('http://' + ip1 + '/control?var=nostop&val='+1);
             fetch('http://' + ip1 + '/control?var=speed&val='+maxVel);
             fetch('http://' + ip1 + '/control?var=car&val='+val);
