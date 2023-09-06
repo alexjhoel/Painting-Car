@@ -131,7 +131,6 @@ var xhttp = new XMLHttpRequest();
             if (x) {
                 $("#app").show("slow");
                 $("#userData").show();
-                $("#usernameText").text(localStorage.getItem("sessionName"))
                 //textToSpeech("Has iniciado sesión como " + localStorage.getItem("sessionName"))
 
             } else {
@@ -176,6 +175,7 @@ var xhttp = new XMLHttpRequest();
         function getsend2(val, x){
             
                 if(val != commandState || x != velState){
+                    console.log(val);
                     fetch('http://' + ip1 + '/control?var=nostop&val='+1);
                     fetch('http://' + ip1 + '/control?var=speed&val='+x);
                     fetch('http://' + ip1 + '/control?var=car&val='+val);

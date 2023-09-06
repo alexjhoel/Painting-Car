@@ -78,13 +78,13 @@
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" name="Cambiar a control con botones" id="modoBoton-tab" data-bs-toggle="tab"
-              data-bs-target="#modoBoton" type="button" role="tab" aria-controls="modoBoton" aria-selected="true">
+              data-bs-target="#modoBoton" type="button" role="tab" aria-controls="modoBoton" aria-selected="true" onclick="getsend(args.stop);">
               Modo botones
             </button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="modoVolante-tab" name="Cambiar a control al volante" data-bs-toggle="tab"
-              data-bs-target="#modoVolante" type="button" role="tab" aria-controls="modoVolante" aria-selected="false">
+              data-bs-target="#modoVolante" type="button" role="tab" aria-controls="modoVolante" aria-selected="false" onclick="getsend(args.stop);">
               Modo volante
             </button>
           </li>
