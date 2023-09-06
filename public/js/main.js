@@ -129,16 +129,13 @@ var xhttp = new XMLHttpRequest();
 
         function Ingresar(x) {
             if (x) {
-                
-                $("#login").hide("slow");
                 $("#app").show("slow");
                 $("#userData").show();
                 $("#usernameText").text(localStorage.getItem("sessionName"))
-                textToSpeech("Has iniciado sesión como " + localStorage.getItem("sessionName"))
+                //textToSpeech("Has iniciado sesión como " + localStorage.getItem("sessionName"))
 
             } else {
                 $("#app").hide("slow");
-                $("#login").show("slow");
                 $("#userData").hide();
             }
         }

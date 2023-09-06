@@ -44,29 +44,6 @@
     </div>
   </div>
 
-  <div class="container p-3 show" id="login">
-    <div class="row">
-      <div class="col-md-4 mx-auto">
-        <div class="card card-body">
-          <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert" style="display: none">
-          </div>
-
-          <div class="form-group p-2">
-            <p>Nombre de usuario:</p>
-            <input class="form-control" type="text" name="Ingresar su usuario aquí" id="username" value=""
-              placeholder="Ingrese su usuario aquí" />
-          </div>
-
-          <div class="form-group p-2">
-            <button class="btn btn-success col-12" id="login" onclick="login();" name="Iniciar Sesión">
-              Log In
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="container p-3" id="app" style="display: none">
     <div class="row d-flex justify-content-center">
       <div class="col-sm-12 col-md-6 text-center">
@@ -92,7 +69,7 @@
               $result = mysqli_query($con, $query);
 
               while($row = mysqli_fetch_array($result)){
-                echo '<button class="m-1 btn-color" id="color-'.$row["id"].'" onload="this.style.setProperty("--color","'.$row["value"].'")" onclick="colorSelected(event);">';
+                echo '<button class="m-1 btn-color" id="color-'.$row["id"].'" name="Cambiar color '.$row["name"].'" onload="this.style.setProperty("--color","'.$row["value"].'")" onclick="colorSelected(event);">';
               }
             ?>
           </div>
