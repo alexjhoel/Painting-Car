@@ -167,18 +167,28 @@ var xhttp = new XMLHttpRequest();
         function getsend(val) {
             //Enviar comando
             console.log(val);
-            fetch('http://' + ip1 + '/control?var=nostop&val='+1);
-            fetch('http://' + ip1 + '/control?var=speed&val='+maxVel);
-            fetch('http://' + ip1 + '/control?var=car&val='+val);
+            try{
+                fetch('http://' + ip1 + '/control?var=nostop&val='+1);
+                fetch('http://' + ip1 + '/control?var=speed&val='+maxVel);
+                fetch('http://' + ip1 + '/control?var=car&val='+val);
+            }catch{
+
+            }
+            
         }
 
         function getsend2(val, x){
             
                 if(val != commandState || x != velState){
                     console.log(val);
-                    fetch('http://' + ip1 + '/control?var=nostop&val='+1);
-                    fetch('http://' + ip1 + '/control?var=speed&val='+x);
-                    fetch('http://' + ip1 + '/control?var=car&val='+val);
+                    try{
+                        fetch('http://' + ip1 + '/control?var=nostop&val='+1);
+                        fetch('http://' + ip1 + '/control?var=speed&val='+x);
+                        fetch('http://' + ip1 + '/control?var=car&val='+val);
+                    }catch{
+                        
+                    }
+                    
                     const list = ["Girando a la derecha", "Retrocediendo", "Detenido","Avanzando", "Girando a la izquierda"]
                     const speedText = val == args.stop ? "" : (x >= maxVel ? "rápido" : "lento")
                     document.getElementById("pVolante").innerHTML = list[parseInt(val) - 1] + " " + speedText;
