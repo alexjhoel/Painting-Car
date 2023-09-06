@@ -1,3 +1,10 @@
+DROP USER IF EXISTS 'paintingUser'@'localhost';
+CREATE USER 'paintingUser'@'localhost' IDENTIFIED BY 'painting2539';
+
+GRANT ALL PRIVILEGES ON *.* TO 'paintingUser'@'localhost';
+
+FLUSH PRIVILEGES;
+
 DROP DATABASE `painting`;
 CREATE Database `painting`;
 USE `painting`;
