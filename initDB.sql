@@ -36,6 +36,7 @@ CREATE TABLE `colors` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `value` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `command` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -46,9 +47,9 @@ CREATE TABLE `colors` (
 
 LOCK TABLES `colors` WRITE;
 /*!40000 ALTER TABLE `colors` DISABLE KEYS */;
-INSERT INTO `colors` (`value`,`name`) VALUES ('black','Negro');
-INSERT INTO `colors` (`value`,`name`) VALUES ('crimson','Rojo');
-INSERT INTO `colors` (`value`,`name`) VALUES ('cornflowerblue','Azul');
+INSERT INTO `colors` (`value`,`name`,`command`) VALUES ('black','Negro','6');
+INSERT INTO `colors` (`value`,`name`,`command`) VALUES ('crimson','Rojo','7');
+INSERT INTO `colors` (`value`,`name`,`command`) VALUES ('cornflowerblue','Azul','8');
 /*!40000 ALTER TABLE `colors` ENABLE KEYS */;
 UNLOCK TABLES;
 

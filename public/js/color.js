@@ -29,13 +29,13 @@ function colorSelected(e){
         data: {id: $(e.target).attr("id").substring(6,7)},
         dataType: "json",
         success: function (data) {
-          //$("#table-body").html(data.output);
+            console.log(data);
         },
         error:function (data) {
-            console.log(data);
+            console.log($(e.target).attr("id").substring(6,7));
           }
       });
         
-    
+    getsend($(e.target).attr("data"));
     $(e.target).addClass("selected");
 }

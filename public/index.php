@@ -69,7 +69,7 @@
               $result = mysqli_query($con, $query);
 
               while($row = mysqli_fetch_array($result)){
-                echo '<button class="m-1 btn-color" id="color-'.$row["id"].'" name="Cambiar color '.$row["name"].'" onload="this.style.setProperty("--color","'.$row["value"].'")" onclick="colorSelected(event);">';
+                echo '<button class="m-1 btn-color" id="color-'.$row["id"].'" data="'.$row["command"].'" name="Cambiar color '.$row["name"].'" onload="this.style.setProperty("--color","'.$row["value"].'")" onclick="colorSelected(event);">';
               }
             ?>
           </div>
