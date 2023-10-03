@@ -29,9 +29,8 @@
 
   <div class="row d-flex p-3 bg-primary" style="color: white">
     <div class="col p-2">
-      <i class="fas fa-robot"></i>
-      <span>Painting Kart</span>
-      <i class="fas fa-car"></i>
+      <img src="img/logoPaintingCar.png" width=40>
+      <span>Painting Car</span>
     </div>
     <div class="col text-end" id="userData" style="display: none">
       <span>Nombre:</span>
@@ -164,6 +163,6 @@
   </div>
 
   <button id="access" name="Desactivar texto a voz" onclick="ttsChange()">
-    <i class="fas fa-universal-access fa-xl" style="color: #000000"></i>
+    <img src="img/access.png" width=25>
   </button>
 </body>
