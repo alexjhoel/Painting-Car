@@ -10,11 +10,14 @@ var xhttp = new XMLHttpRequest();
         const alertCard = document.getElementById("alert");
 
         const session = new Date(localStorage.getItem("session"));
-
         var ttsEnabled = false;
+
+        if(localStorage.getItem("tts") != null)ttsEnabled = localStorage.getItem("tts") == 'true';
         let synth = window.speechSynthesis;
         var commandState = '3';
         var velState;
+	    var volanteMode = false;
+        var volanteCooldown = false;
 
 
         /////////////////////////
@@ -83,9 +86,19 @@ var xhttp = new XMLHttpRequest();
 
             document.querySelectorAll("button").forEach((element) => element.onmouseenter = () => textToSpeech(element.name))
             document.querySelectorAll("input").forEach((element) => element.onmouseenter = () => textToSpeech(element.name))
-            document.querySelectorAll("button").forEach((element) => element.onfocus = () => textToSpeech(element.name + " ,click"))
+            document.querySelectorAll("button:not(#modoBoton-tab):not(#modoVolante-tab)").forEach((element) => element.onfocus = () => textToSpeech(element.name + " ,click"))
             document.querySelectorAll("input").forEach((element) => element.onfocus = () => textToSpeech(element.name + " ,click"))
+            document.querySelector("#modoBoton-tab").onfocus = () => {
+                textToSpeech(document.querySelector("#modoBoton-tab").name + " ,click")
+                volanteMode = false;
 
+            }
+
+            document.querySelector("#modoVolante-tab").onfocus = () => {
+                textToSpeech(document.querySelector("#modoVolante-tab").name + " ,click")
+                volanteMode = true;
+
+            }
             Ingresar(true);
         }
 
@@ -167,6 +180,17 @@ var xhttp = new XMLHttpRequest();
         function getsend(val) {
             //Enviar comando
             console.log(val);
+            if(val > 5){
+                
+                if(!volanteCooldown) 
+                {
+		    console.log("Color change to " + val);
+                    volanteCooldown = true;
+                    setTimeout(() => volanteCooldown = false, 1500);
+                }                                                                
+                else return;
+                
+            }
             try{
                 fetch('http://' + ip1 + '/control?var=nostop&val='+1);
                 fetch('http://' + ip1 + '/control?var=speed&val='+maxVel);
@@ -174,13 +198,16 @@ var xhttp = new XMLHttpRequest();
             }catch{
 
             }
+                
+            
+            
             
         }
 
         function getsend2(val, x){
             
                 if(val != commandState || x != velState){
-                    console.log(val);
+                    //console.log(val);
                     try{
                         fetch('http://' + ip1 + '/control?var=nostop&val='+1);
                         fetch('http://' + ip1 + '/control?var=speed&val='+x);
@@ -208,6 +235,7 @@ var xhttp = new XMLHttpRequest();
 
         function ttsChange(){
             ttsEnabled = !ttsEnabled
+            localStorage.setItem("tts", ttsEnabled);
         }
 
         function recargarVid1(){

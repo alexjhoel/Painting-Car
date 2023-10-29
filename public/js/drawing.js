@@ -44,6 +44,8 @@ function startDrawing(e) {
 
 
 function endDrawing(e) {
+    console.log("Volante>" + volanteMode);
+    if(!volanteMode) return;
     drawing = false;
     getsend2(args.stop);
     window.onscroll = function() {};
@@ -80,7 +82,7 @@ function isBetween(x,y,z){
 }
 
 function loop(){
-    
+    if(!volanteMode) return;
     cycle++;
     ctx.beginPath();
     ctx.fillStyle = "white";

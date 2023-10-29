@@ -24,9 +24,8 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-  <script src="js/main.js?t=149139134549"></script>
-  <script src="js/drawing.js"></script>
-
+  <script src="js/main.js?t=19191549"></script>
+  <script src="js/drawing.js?t=1913914"></script>
   <div class="row d-flex p-3 bg-primary" style="color: white">
     <div class="col p-2">
       <img src="img/logoPaintingCar.png" width=40>
